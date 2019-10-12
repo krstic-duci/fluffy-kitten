@@ -28,4 +28,15 @@ body, #app {
 
 #app {
   position: relative;
+  padding: 0 20px;
+}
+
+a, a:focus {
+  color: rgba($black, 0.7);
+  text-decoration: none;
+}
+
+textarea, button, input {
+  outline: none;
+  border: 0;
 }

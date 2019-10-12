@@ -1,0 +1,32 @@
+.search__movies__wrapper {
+  margin-top: 10px;
+  input {
+    height: 50px;
+    border-radius: 4px;
+    background-color: $grey;
+    transition: all .3s ease-in-out;
+    width: 100%;
+    padding-left: 12px;
+  }
+  .search__movies__wrapper__list {
+    margin: 10px 0;
+    max-height: 300px;
+    overflow-y: auto;
+
+    .search__movies__wrapper__item {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      flex: 0 0 40%;
+      max-width: 40%;
+      cursor: pointer;
+      img {
+        width: 75px;
+        height: 75px;
+      }
+      span {
+        margin-left: 15px;
+      }
+    }
+  }
+}
