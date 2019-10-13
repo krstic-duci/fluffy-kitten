@@ -18,10 +18,9 @@ const searchMovieByQuery = async (id) => {
   }
 }
 
-const getMovieById = async (id) => {
+const getMovieTrailerById = async (id) => {
   try {
-    const response = await axios.get(`/movie/${id}?api_key=${process.env.VUE_APP_TMDB_API_KEY}`)
-    console.log(response)
+    const response = await axios.get(`/movie/${id}/videos?api_key=${process.env.VUE_APP_TMDB_API_KEY}`)
     return response.data
   } catch (error) {
     console.error('Error in get movie by Id API call', error)
@@ -31,5 +30,5 @@ const getMovieById = async (id) => {
 export {
   getPopularMovies,
   searchMovieByQuery,
-  getMovieById
+  getMovieTrailerById
 }

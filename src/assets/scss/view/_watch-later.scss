@@ -1,0 +1,12 @@
+.watch__later__wrapper {
+  & > p {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 18px;
+      margin-left: 20px;
+    }
+  }
+}

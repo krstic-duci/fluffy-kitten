@@ -1,21 +1,20 @@
 const state = {
-  IS_FAVORITE: false
+  WATCH_LATER_STATE: []
 }
 
 const getters = {
-  IS_FAVORITE_ACTIVE: state => state.IS_FAVORITE
+  WATCH_LATER_GETTER: state => state.WATCH_LATER_STATE
 }
 
 const mutations = {
-  SET_IS_FAVORITE (state, payload) {
-    state.IS_FAVORITE = payload
+  MUTATION_WATCH_LATER_ARRAY (state, payload) {
+    state.WATCH_LATER_STATE.push(payload)
   }
 }
 
 const actions = {
-  MAKE_IT_FAVORITE ({ commit }, actionPayload) {
-    console.log(actionPayload)
-    commit('SET_IS_FAVORITE', actionPayload)
+  ACTION_WATCH_LATER_ARRAY ({ commit }, actionPayload) {
+    commit('MUTATION_WATCH_LATER_ARRAY', actionPayload)
   }
 }
 

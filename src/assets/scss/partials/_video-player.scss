@@ -1,0 +1,20 @@
+.video__player--modal {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: opacity .3s ease;
+
+  &.video__player--modal-show {
+    opacity: 1;
+    visibility: visible;
+
+    iframe {
+      width: 640px;
+      height: 360px;
+    }
+  }
+}

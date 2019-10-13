@@ -1,9 +1,15 @@
 @media screen and (max-width: 992px) {
-  .home__wrapper {
-    .home__wrapper__movies {
-      .home__wrapper__movies__item {
-        flex: 0 0 100%;
-        max-width: 100%;
+  .movies__cards {
+    .movies__cards__item {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  .video__player--modal {
+    &.video__player--modal-show {
+      iframe {
+
       }
     }
   }
