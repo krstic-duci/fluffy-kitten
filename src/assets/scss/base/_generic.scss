@@ -28,15 +28,54 @@ body, #app {
 
 #app {
   position: relative;
-  padding: 0 20px;
 }
 
 a, a:focus {
-  color: rgba($black, 0.7);
+  color: rgba($black, 0.5);
   text-decoration: none;
 }
 
 textarea, button, input {
   outline: none;
   border: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    max-width: 970px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .container {
+    max-width: 1370px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: unset;
+    margin: 0 20px;
+    width: auto;
+  }
 }

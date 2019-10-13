@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import homeModules from './modules/homeModules'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-
+  plugins: [
+    createPersistedState()
+  ],
+  modules: {
+    home: homeModules
   },
-  mutations: {
-
-  },
-  actions: {
-
-  }
+  strict: process.env.NODE_ENV !== 'production'
 })

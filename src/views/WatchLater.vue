@@ -1,5 +1,7 @@
 <template>
-  <div class="sidebar--width watch__later__wrapper">
-    <h1>This is watch later movie page</h1>
+  <div class="container">
+    <section class="watch__later__wrapper pt-header">
+      <h1>This is watch later movie page</h1>
+    </section>
   </div>
 </template>

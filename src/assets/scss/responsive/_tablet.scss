@@ -1,0 +1,10 @@
+@media screen and (max-width: 992px) {
+  .home__wrapper {
+    .home__wrapper__movies {
+      .home__wrapper__movies__item {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}

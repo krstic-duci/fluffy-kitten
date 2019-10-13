@@ -1,51 +1,104 @@
 <template>
-  <aside
-    class="sidebar__wrapper"
-    :class="{'sidebar__wrapper--show': isSidebarOpen}"
-  >
-    <!-- Aside hamburger -->
-    <div class="sidebar__wrapper__hamburger" @click="openCloseSidebar">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div><!-- ./sidebar__wrapper__hamburger -->
+  <header class="sidebar__wrapper">
 
-    <div class="sidebar__wrapper__links">
+    <!-- Navigation -->
+    <nav>
+      <div class="sidebar__wrapper__links">
 
-      <!-- Home -->
-      <router-link to="/" class="sidebar__item">
-        <i class="medium material-icons">home</i>
-        <span>Home</span>
-      </router-link>
+        <!-- Home -->
+        <router-link to="/" class="sidebar__item">
+          <i class="medium material-icons">home</i>
+          <span>Home</span>
+        </router-link>
 
-      <!-- Single Item Movie Details -->
-      <router-link to="/watch-later" class="sidebar__item">
-        <i class="medium material-icons">watch_later</i>
-        <span>Watch Later...</span>
-      </router-link>
+        <!-- Single Item Movie Details -->
+        <router-link to="/watch-later" class="sidebar__item">
+          <i class="medium material-icons">watch_later</i>
+          <span>Watch Later...</span>
+        </router-link>
 
-    </div><!-- ./sidebar__wrapper__links -->
-  </aside><!-- ./sidebar__wrapper -->
+      </div><!-- ./sidebar__wrapper__links -->
+    </nav>
+
+    <!-- Search Movies -->
+    <section class="search__movies__wrapper">
+
+      <i class="small material-icons">search</i>
+
+      <input
+        type="text"
+        v-model="movieQuery"
+        @keyup="searchMovieById(movieQuery)"
+        placeholder="Search your movie..."
+      >
+
+      <div class="search__movies__wrapper__list">
+        <p v-if="!hasMovie">No results for current parameter, please try something else...</p>
+        <div
+          class="search__movies__wrapper__item"
+          v-for="movie in movies"
+          :key="movie.id"
+        >
+
+          <!-- Set image from TMDB if exists, TMDB returns 404 -->
+          <v-lazy-image
+            v-if="movie.poster_path"
+            :src="`${MX_movieImagePathUrl}${movie.poster_path}`"
+            :src-placeholder="`${MX_movieImagePathUrl}${movie.backdrop_path}`"
+          />
+          <!-- Otherwise set default No Image -->
+          <v-lazy-image
+            v-else
+            :src="require('../assets/images/noimage.jpg')"
+            :src-placeholder="require('../assets/images/no-image-icon.png')"
+          />
+          <span>{{ movie.title }}</span>
+
+        </div><!-- ./search__movies__wrapper__item -->
+      </div><!-- ./search__movies__wrapper__list -->
+
+    </section><!-- ./search__movies__wrapper -->
+
+  </header><!-- ./sidebar__wrapper -->
 </template>
 
 <script>
+import { searchMovieByQuery } from '@/api/moviesApi'
+import { movieImagePath } from '@/mixins/movieImagePath'
+
 export default {
   name: 'theSidebar',
+  mixins: [
+    movieImagePath
+  ],
   data () {
     return {
-      isSidebarOpen: false
-    }
-  },
-  watch: {
-    // Whenever route path is changed reset the
-    // sidebar to default
-    $route (to, from) {
-      this.isSidebarOpen = false
+      movieQuery: '',
+      movies: [],
+      hasMovie: true
     }
   },
   methods: {
-    openCloseSidebar () {
-      this.isSidebarOpen = !this.isSidebarOpen
+    searchMovieById (movieId) {
+      // Don't bother the server when movieId is undefined/null,
+      // reset everything
+      if (!movieId.length) {
+        this.movies = []
+        return
+      }
+      /**
+      * @description - Call TMDB endpoint for fetching a single movie
+      * @params {String} - movieId
+      * @returns {Object}
+      */
+      searchMovieByQuery(movieId)
+        .then(response => {
+          // Handle the case when there are no results
+          !response.results.length ? this.hasMovie = false : this.hasMovie = true
+          // Otherwise push the movies for displaying
+          this.movies = response.results
+        })
+        .catch(err => console.error(err))
     }
   }
 }

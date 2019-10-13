@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 // Set default URL for TMDB API endpoints,
 // will be used in api/moviesApi.js
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/'
+// with axios v0.19.0 cannot set default query param for api_key
 
 // Initialize Vue Plugins:
 Vue.use(VLazyImagePlugin)
