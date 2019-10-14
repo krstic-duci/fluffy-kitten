@@ -8,7 +8,7 @@
       <h1>
         Movie Details:
       </h1>
-      <!-- MX_movieDetailsImagePathUrl -->
+
       <div v-for="movie in movieDetailsList" :key="movie.id">
         <p>{{movie.adult}}</p>
       </div>
@@ -20,7 +20,7 @@
 import { getMovieById } from '@/api/moviesApi'
 import { formatDate } from '@/mixins/formatDate'
 import theSpinner from '@/components/theSpinner.vue'
-import { movieDetailsImagePath } from '@/mixins/movieDetailsImagePath'
+import { TMDB_FULL_IMG_API_URL } from '@/config/api.constants'
 
 export default {
   name: 'movieDetails',
@@ -28,8 +28,7 @@ export default {
     'the-spinner': theSpinner
   },
   mixins: [
-    formatDate,
-    movieDetailsImagePath
+    formatDate
   ],
   data () {
     return {

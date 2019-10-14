@@ -18,7 +18,6 @@
 
 <script>
 import { getPopularMovies } from '@/api/moviesApi'
-import { mapActions, mapGetters } from 'vuex'
 import theSpinner from '@/components/theSpinner.vue'
 import movieList from '@/components/movieList.vue'
 
@@ -34,16 +33,10 @@ export default {
       isLoading: true
     }
   },
-  computed: {
-    ...mapGetters({
-      watchLaterList: 'home/WATCH_LATER_GETTER'
-    })
-  },
   created () {
     this.initPopularMovies()
   },
   methods: {
-    ...mapActions['home/ACTION_WATCH_LATER_ARRAY'],
     initPopularMovies () {
     /**
      * @description - Call TMDB endpoint for fetching 20 movies rated by popularity

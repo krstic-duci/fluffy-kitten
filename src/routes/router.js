@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
-import NotFound from '../views/404.vue'
 
 Vue.use(Router)
 
@@ -11,27 +9,22 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: () => import('@/views/Home.vue')
     },
     {
       path: '/watch-later',
       name: 'WatchLater',
-      component: () => import(/* webpackChunkName: "WatchLater" */ '../views/WatchLater.vue')
+      component: () => import(/* webpackChunkName: "WatchLater" */ '@/views/WatchLater.vue')
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
-    },
-    {
-      path: '/movie-details',
+      path: '/movie-details/:id',
       name: 'MovieDetails',
-      component: () => import(/* webpackChunkName: "MovieDetails" */ '../views/MovieDetails.vue'),
+      component: () => import(/* webpackChunkName: "MovieDetails" */ '@/views/MovieDetails.vue'),
       props: true
     },
     {
       path: '*',
-      component: NotFound
+      component: () => import('@/views/404.vue')
     }
   ]
 })

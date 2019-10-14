@@ -2,15 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './routes/router'
 import store from './store/store'
-import axios from 'axios'
 import { VLazyImagePlugin } from 'v-lazy-image'
+import ApiService from '@/config/api.config'
 
 Vue.config.productionTip = false
 
-// Set default URL for TMDB API endpoints,
-// will be used in api/moviesApi.js
-axios.defaults.baseURL = 'https://api.themoviedb.org/3/'
-// with axios v0.19.0 cannot set default query param for api_key
+ApiService.init()
 
 // Initialize Vue Plugins:
 Vue.use(VLazyImagePlugin)

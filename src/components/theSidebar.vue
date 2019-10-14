@@ -43,8 +43,8 @@
           <!-- Set image from TMDB if exists, TMDB returns 404 -->
           <v-lazy-image
             v-if="movie.poster_path"
-            :src="`${MX_movieImagePathUrl}${movie.poster_path}`"
-            :src-placeholder="`${MX_movieImagePathUrl}${movie.backdrop_path}`"
+            :src="`${movieImagePathUrl}${movie.poster_path}`"
+            :src-placeholder="`${movieImagePathUrl}${movie.backdrop_path}`"
           />
           <!-- Otherwise set default No Image -->
           <v-lazy-image
@@ -64,18 +64,16 @@
 
 <script>
 import { searchMovieByQuery } from '@/api/moviesApi'
-import { movieImagePath } from '@/mixins/movieImagePath'
+import { TMDB_IMG_API_URL } from '@/config/api.constants'
 
 export default {
   name: 'theSidebar',
-  mixins: [
-    movieImagePath
-  ],
   data () {
     return {
       movieQuery: '',
       movies: [],
-      hasMovie: true
+      hasMovie: true,
+      movieImagePathUrl: TMDB_IMG_API_URL
     }
   },
   methods: {
