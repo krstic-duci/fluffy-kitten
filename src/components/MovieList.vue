@@ -236,7 +236,6 @@ export default {
     fillFavoriteList (favMovieId) {
       // Remove icon
       if (this.listIdsFavorite.includes(favMovieId)) {
-        console.log('daaaaaaaaa')
         this.$store.dispatch('home/REMOVE_MARK_AS_FAVORITE', favMovieId)
       } else {
         // Push IDs into array to represent favorite movies

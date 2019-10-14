@@ -11,7 +11,7 @@ const getPopularMovies = async () => {
 
 const searchMovieByQuery = async (id) => {
   try {
-    const response = await axios.get(`/search/movie&query=${id}`)
+    const response = await axios.get(`/search/movie?query=${id}`)
     return response.data
   } catch (error) {
     console.error('Error in search movie by query param API call', error)
@@ -29,7 +29,7 @@ const getMovieTrailerById = async (id) => {
 
 const getMovieById = async (id) => {
   try {
-    const response = await axios.get(`/movie/${id}`)
+    const response = await axios.get(`/movie/${id}?append_to_response=videos`)
     return response.data
   } catch (error) {
     console.error('Error in get movie by Id API call', error)

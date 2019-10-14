@@ -9,9 +9,10 @@
         Movie Details:
       </h1>
 
-      <div v-for="movie in movieDetailsList" :key="movie.id">
-        <p>{{movie.adult}}</p>
+      <div v-for="(movie, index) in movieDetailsList" :key="index">
+        <p>{{movie}}</p>
       </div>
+
     </div>
   </section>
 </template>
@@ -33,18 +34,35 @@ export default {
   data () {
     return {
       isLoading: true,
-      movieDetailsList: []
+      movieDetailsList: [],
+      tmdbFullImageUrl: TMDB_FULL_IMG_API_URL,
+      movieId: this.$route.params.id
     }
   },
-  mounted () {
+  watch: {
+    // Watch for changes in search bar and URL and call the TMDB API accordingly
+    $route (to, from) {
+      if (to.params.id !== from.params.id) {
+        this.movieId = from.params.id
+      }
+    }
+  },
+  created () {
+    this.initMovieDetails()
+  },
+  updated () {
     this.initMovieDetails()
   },
   methods: {
+    /**
+     * @description - Call the TMDB Api for Movie details
+     * @params {String} - movieId
+     * @returns {Object}
+     */
     initMovieDetails () {
-      getMovieById(this.$route.params.id)
-        .then(responseData => {
-          // console.log(responseData)
-          this.movieDetailsList = responseData
+      getMovieById(this.movieId)
+        .then(response => {
+          this.movieDetailsList = response
         })
         .catch(err => console.error(err))
         .finally(() => {

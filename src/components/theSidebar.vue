@@ -34,27 +34,28 @@
 
       <div class="search__movies__wrapper__list">
         <p v-if="!hasMovie">No results for current parameter, please try something else...</p>
-        <div
-          class="search__movies__wrapper__item"
-          v-for="movie in movies"
-          :key="movie.id"
-        >
+          <div
+            class="search__movies__wrapper__item"
+            v-for="movie in movies"
+            :key="movie.id"
+          >
+            <router-link :to="{ name: 'MovieDetails', params: { id: movie.id }}">
+              <!-- Set image from TMDB if exists, TMDB returns 404 -->
+              <v-lazy-image
+                v-if="movie.poster_path"
+                :src="`${movieImagePathUrl}${movie.poster_path}`"
+                :src-placeholder="`${movieImagePathUrl}${movie.backdrop_path}`"
+              />
+              <!-- Otherwise set default No Image -->
+              <v-lazy-image
+                v-else
+                :src="require('../assets/images/noimage.jpg')"
+                :src-placeholder="require('../assets/images/no-image-icon.png')"
+              />
+              <span>{{ movie.title }}</span>
+            </router-link>
 
-          <!-- Set image from TMDB if exists, TMDB returns 404 -->
-          <v-lazy-image
-            v-if="movie.poster_path"
-            :src="`${movieImagePathUrl}${movie.poster_path}`"
-            :src-placeholder="`${movieImagePathUrl}${movie.backdrop_path}`"
-          />
-          <!-- Otherwise set default No Image -->
-          <v-lazy-image
-            v-else
-            :src="require('../assets/images/noimage.jpg')"
-            :src-placeholder="require('../assets/images/no-image-icon.png')"
-          />
-          <span>{{ movie.title }}</span>
-
-        </div><!-- ./search__movies__wrapper__item -->
+          </div><!-- ./search__movies__wrapper__item -->
       </div><!-- ./search__movies__wrapper__list -->
 
     </section><!-- ./search__movies__wrapper -->
