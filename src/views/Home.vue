@@ -20,7 +20,7 @@
 import { getPopularMovies } from '@/api/moviesApi'
 import { mapActions, mapGetters } from 'vuex'
 import theSpinner from '@/components/theSpinner.vue'
-import movieList from '@/components/MovieList.vue'
+import movieList from '@/components/movieList.vue'
 
 export default {
   name: 'home',

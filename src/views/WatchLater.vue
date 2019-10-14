@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import movieList from '@/components/MovieList.vue'
+import movieList from '@/components/movieList.vue'
 
 export default {
   name: 'watchLater',

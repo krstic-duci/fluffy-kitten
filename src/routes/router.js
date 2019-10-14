@@ -19,6 +19,17 @@ export default new Router({
       component: () => import(/* webpackChunkName: "WatchLater" */ '../views/WatchLater.vue')
     },
     {
+      path: '/login',
+      name: 'Login',
+      component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+    },
+    {
+      path: '/movie-details',
+      name: 'MovieDetails',
+      component: () => import(/* webpackChunkName: "MovieDetails" */ '../views/MovieDetails.vue'),
+      props: true
+    },
+    {
       path: '*',
       component: NotFound
     }

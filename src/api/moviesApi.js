@@ -23,6 +23,15 @@ const getMovieTrailerById = async (id) => {
     const response = await axios.get(`/movie/${id}/videos?api_key=${process.env.VUE_APP_TMDB_API_KEY}`)
     return response.data
   } catch (error) {
+    console.error('Error in get movie trailer by Id API call', error)
+  }
+}
+
+const getMovieById = async (id) => {
+  try {
+    const response = await axios.get(`/movie/${id}?api_key=${process.env.VUE_APP_TMDB_API_KEY}`)
+    return response.data
+  } catch (error) {
     console.error('Error in get movie by Id API call', error)
   }
 }
@@ -30,5 +39,6 @@ const getMovieTrailerById = async (id) => {
 export {
   getPopularMovies,
   searchMovieByQuery,
-  getMovieTrailerById
+  getMovieTrailerById,
+  getMovieById
 }

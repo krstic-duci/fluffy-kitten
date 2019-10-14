@@ -57,7 +57,7 @@
 
         <!-- Movie details -->
         <span :class="{'d-none': $route.name === 'WatchLater'}">
-          <router-link to="/">
+          <router-link :to="{ name: 'MovieDetails', params: { id: movie.id }}">
             Movie details...
           </router-link>
         </span>
@@ -96,9 +96,9 @@
 </template>
 
 <script>
+import { getMovieTrailerById } from '@/api/moviesApi'
 import { formatDate } from '@/mixins/formatDate'
 import { movieImagePath } from '@/mixins/movieImagePath'
-import { getMovieTrailerById } from '@/api/moviesApi'
 
 export default {
   name: 'movieList',
