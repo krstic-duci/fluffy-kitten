@@ -5,7 +5,7 @@ const getPopularMovies = async () => {
     const response = await axios.get(`/movie/popular`)
     return response.data
   } catch (error) {
-    console.error('Error in Popular movie API call', error)
+    console.error('Error in popular movie API call', error)
   }
 }
 

@@ -6,9 +6,7 @@ import { VLazyImagePlugin } from 'v-lazy-image'
 import ApiService from '@/config/api.config'
 
 Vue.config.productionTip = false
-
 ApiService.init()
-
 // Initialize Vue Plugins:
 Vue.use(VLazyImagePlugin)
 
