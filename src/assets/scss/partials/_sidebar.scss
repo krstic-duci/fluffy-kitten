@@ -70,7 +70,30 @@
           }
         }
 
-        span {
+        .sidebar__item__notification {
+          position: relative;
+          & > span {
+            background-color: $navy-blue;
+            border-radius: 50%;
+            color: $white;
+            font-size: 12px;
+            height: 20px;
+            position: absolute;
+            width: 20px;
+            bottom: 15px;
+            right: -15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 2px 2px rgba($black, 0.2);
+            & > span {
+              position: relative;
+              left: -0.5px;
+            }
+          }
+        }
+
+        & > span {
           margin-left: 7.5px;
           align-self: flex-end;
         }

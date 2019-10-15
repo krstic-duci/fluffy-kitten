@@ -14,7 +14,14 @@
         <!-- Single Item Movie Details -->
         <router-link to="/watch-later" class="sidebar__item">
           <i class="medium material-icons">watch_later</i>
-          <span>Watch Later...</span>
+          <span class="sidebar__item__notification">
+            Watch Later...
+            <span v-if="listIdsWatchLater.length">
+              <span>
+                {{listIdsWatchLater.length}}
+              </span>
+            </span>
+          </span>
         </router-link>
 
       </div><!-- ./sidebar__wrapper__links -->
@@ -66,6 +73,7 @@
 <script>
 import { searchMovieByQuery } from '@/api/moviesApi'
 import { TMDB_IMG_API_URL } from '@/config/api.constants'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'theSidebar',
@@ -76,6 +84,11 @@ export default {
       hasMovie: true,
       movieImagePathUrl: TMDB_IMG_API_URL
     }
+  },
+  computed: {
+    ...mapGetters({
+      listIdsWatchLater: 'home/SELECTED_MOVIE_GETTER'
+    })
   },
   methods: {
     searchMovieById (movieId) {

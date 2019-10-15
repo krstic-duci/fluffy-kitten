@@ -1,4 +1,9 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
+  .home__wrapper {
+    h1 {
+      margin: 10px 0;
+    }
+  }
   .pt-header {
     padding-top: 110px;
   }
@@ -17,7 +22,13 @@
   .movies__cards {
     .movies__cards__item {
       display: block;
-      padding: 0 0 40px;
+      margin-bottom: 35px;
+      padding: 0 0 10px;
+      transition: none;
+      transform: unset;
+      &:hover {
+        transform: unset;
+      }
   
       .movies__cards__item__image {
         text-align: center;
@@ -25,32 +36,84 @@
   
       .movies__cards__item__placeholder {
         height: auto;
+        margin-left: 0;
+        padding: 0 20px;
+
+        .movies__cards__item__title {
+          font-size: 22px;
+        }
+
+        .movies__cards__item__date {
+          margin-bottom: 10px;
+        }
+        
+        .movies__cards__item__overview {
+          font-size: 15px;
+        }
       }
 
       .movies__cards__item__functionality {
-        
-      }
-    }
-  }
+        display: block;
+        height: auto;
+        position: relative;
 
-  .video__player--modal {
-    &.video__player--modal-show {
-      width: 95%;
-      text-align: center;
-      height: 250px;
-
-      iframe {
-        width: inherit;
-        height: inherit;
+        & > span {
+          margin: 15px 20px 0;
+          font-size: 20px;
+        }
       }
     }
   }
 }
 
-@media screen and (max-width: 900px) and (orientation: landscape) {
+@media screen and (max-width: 480px) {
+  .movies__cards {
+    .movies__cards__item {
+      .movies__cards__item__functionality {
+        & > span {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+  .video__player--backdrop {
+    .video__player--modal {
+      &.video__player--modal-show {
+        width: 95%;
+        text-align: center;
+        height: 400px;
+  
+        iframe {
+          width: inherit;
+          height: 370px;
+        }
+      }
+    }
+  }
+}
+
+// Fix for newer versions of iPhone
+@media screen and (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+  .sidebar__wrapper {
+    width: 100%;
+  }
   .search__movies__wrapper {
     .search__movies__wrapper__list {
       max-height: 180px;
+    }
+  }
+  .video__player--backdrop {
+    .video__player--modal {
+      &.video__player--modal-show {
+        width: 95%;
+        text-align: center;
+        height: 280px;
+  
+        iframe {
+          width: inherit;
+          height: 250px;
+        }
+      }
     }
   }
 }

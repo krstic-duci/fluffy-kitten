@@ -8,12 +8,10 @@
 </template>
 
 <script>
-import theSidebar from './components/theSidebar.vue'
-
 export default {
   name: 'app',
   components: {
-    'the-header': theSidebar
+    'the-header': () => import('@/components/theSidebar.vue')
   }
 }
 </script>

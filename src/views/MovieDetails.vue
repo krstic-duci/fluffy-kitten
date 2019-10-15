@@ -9,12 +9,11 @@
         Movie Details:
       </h1>
 
-      <!-- Movie Details -->
-      <div v-for="(movie, index) in movieDetailsList" :key="index">
-        <p>{{movie}}</p>
+      <!-- TODO: Implement movie details TMDB API -->
+      <!-- <div v-for="(movie, index) in movieDetailsList" :key="index">
+        <p>{{movie.title}}</p>
 
-        <!-- Movie Trailers -->
-        <section v-if="movie.videos.length">
+        <section v-if="movie.results.length">
           <div>
             Movies trailers list
           </div>
@@ -22,7 +21,7 @@
         <section v-else>
           Sorry there are no videos for selected movie
         </section>
-      </div>
+      </div> -->
 
     </div>
   </section>

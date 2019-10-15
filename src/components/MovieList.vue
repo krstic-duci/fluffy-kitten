@@ -92,7 +92,11 @@
         </span>
 
         <!-- Remove from "watch later" -->
-        <span @click="removeFromWatchLaterList(movie.id)" :class="{'d-none': $route.name === 'Home'}">
+        <span
+          class="movies__cards__item__functionality__remove"
+          @click="removeFromWatchLaterList(movie.id)"
+          :class="{'d-none': $route.name === 'Home'}"
+        >
           Remove from "Watch Later":
           <i class="small material-icons">delete</i>
         </span>
@@ -106,15 +110,29 @@
 
     </div><!-- ./movies__cards__item -->
 
-    <!-- TODO: Error on adding embed video -->
-    <!-- <section class="video__player--modal" :class="{'video__player--modal-show': isPlayerLoaded}">
-      <iframe
-        type="text/html"
-        :src="`https://www.youtube.com/embed/${youtubeVideoKey}`"
-        frameborder="0"
+    <!-- YouTube Modal -->
+    <div
+      class="video__player--backdrop"
+      :class="{'video__player--backdrop-show': isPlayerLoaded}"
+    >
+      <section
+        class="video__player--modal"
+        :class="{'video__player--modal-show': isPlayerLoaded}"
       >
-      </iframe>
-    </section> -->
+        <button @click="showHidePlayer">
+          <i class="small material-icons">close</i>
+        </button>
+        <iframe
+          type="text/html"
+          :src="`https://www.youtube.com/embed/${youtubeVideoKey}?enablejsapi=1`"
+          frameborder="0"
+          ref="ytPlayer"
+          allowfullscreen
+        >
+        </iframe>
+      </section><!--./video__player--modal -->
+    </div><!--./video__player--backdrop -->
+
   </div><!-- ./movies__cards -->
 </template>
 
@@ -185,6 +203,9 @@ export default {
     fillWatchLaterList (watchLaterMovieId) {
       // Prevent user to add multiple movies with same ID
       if (this.listIdsWatchLater.includes(watchLaterMovieId)) {
+        this.$toasted.show('The movie has already been added...', {
+          type: 'info'
+        })
         return
       }
       let movieList = [...this.movies]
@@ -199,6 +220,11 @@ export default {
       // Change the icon for watch later, and
       // Push IDs into array to represent watched later movies
       this.$store.dispatch('home/MARK_AS_WATCH_LATER', watchLaterMovieId)
+
+      this.$toasted.show('Added', {
+        type: 'info',
+        icon: 'check'
+      })
     },
     /**
      * @description - Delete a movie from "Watch later" section
@@ -211,6 +237,35 @@ export default {
       this.$store.dispatch('home/GET_MOVIE_ID_WATCH_LATER', elemWatchLaterMovie)
       // Remove icon
       this.$store.dispatch('home/REMOVE_MARK_AS_WATCH_LATER', elemWatchLaterMovie)
+
+      this.$toasted.show('Removed', {
+        type: 'success',
+        icon: 'check'
+      })
+    },
+    /**
+     * @description - Toggle show/hide favorite movie on "Home" page
+     * @params {String} - favMovieId
+     * @returns {Array or Null}
+    */
+    fillFavoriteList (favMovieId) {
+      // Remove icon
+      if (this.listIdsFavorite.includes(favMovieId)) {
+        this.$store.dispatch('home/REMOVE_MARK_AS_FAVORITE', favMovieId)
+
+        this.$toasted.show('Removed', {
+          type: 'success',
+          icon: 'check'
+        })
+      } else {
+        // Push IDs into array to represent favorite movies
+        this.$store.dispatch('home/MARK_AS_FAVORITE', favMovieId)
+
+        this.$toasted.show('Added', {
+          type: 'info',
+          icon: 'check'
+        })
+      }
     },
     /**
      * @description - Make a youtube player with appropriate video
@@ -226,21 +281,19 @@ export default {
           this.youtubeVideoKey = response.results[0].key
           this.isPlayerLoaded = true
         })
-        .catch(err => console.error(err))
+        .catch(err => {
+          this.$toasted.show('Error fetching video, please try again later...', {
+            type: 'error'
+          })
+          console.error(err)
+        })
     },
     /**
-     * @description - Toggle show/hide favorite movie on "Home" page
-     * @params {String} - favMovieId
-     * @returns {Array or Null}
+     * @description - Hides the video trailer and stop the video from playing
     */
-    fillFavoriteList (favMovieId) {
-      // Remove icon
-      if (this.listIdsFavorite.includes(favMovieId)) {
-        this.$store.dispatch('home/REMOVE_MARK_AS_FAVORITE', favMovieId)
-      } else {
-        // Push IDs into array to represent favorite movies
-        this.$store.dispatch('home/MARK_AS_FAVORITE', favMovieId)
-      }
+    showHidePlayer () {
+      this.isPlayerLoaded = false
+      this.$refs.ytPlayer.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*')
     }
   }
 }

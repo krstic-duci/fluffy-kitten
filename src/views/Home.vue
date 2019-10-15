@@ -18,14 +18,12 @@
 
 <script>
 import { getPopularMovies } from '@/api/moviesApi'
-import theSpinner from '@/components/theSpinner.vue'
-import movieList from '@/components/movieList.vue'
 
 export default {
   name: 'home',
   components: {
-    'the-spinner': theSpinner,
-    'movie-list': movieList
+    'the-spinner': () => import('@/components/theSpinner.vue'),
+    'movie-list': () => import('@/components/movieList.vue')
   },
   data () {
     return {
@@ -46,7 +44,12 @@ export default {
         .then(response => {
           this.popularMoviesList = response.results
         })
-        .catch(err => console.error(err))
+        .catch(err => {
+          this.$toasted.show('Error fetching data, please try again later...', {
+            type: 'error'
+          })
+          console.error(err)
+        })
         .finally(() => {
           this.isLoading = false
         })

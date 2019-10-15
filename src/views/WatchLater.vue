@@ -19,12 +19,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import movieList from '@/components/movieList.vue'
 
 export default {
   name: 'watchLater',
   components: {
-    'movie-list': movieList
+    'movie-list': () => import('@/components/movieList.vue')
   },
   computed: {
     ...mapGetters({
