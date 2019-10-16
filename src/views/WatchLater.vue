@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+
     <section class="watch__later__wrapper pt-header">
 
       <h1>List of added movies:</h1>
@@ -13,7 +14,8 @@
 
       <movie-list :movies="watchLaterListMovies"></movie-list>
 
-    </section>
+    </section><!-- ./watch__later__wrapper -->
+
   </div>
 </template>
 
@@ -23,7 +25,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'watchLater',
   components: {
-    'movie-list': () => import('@/components/movieList.vue')
+    'movie-list': () => import('@/components/movieLists.vue')
   },
   computed: {
     ...mapGetters({

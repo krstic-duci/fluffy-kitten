@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+
     <section class="home__wrapper pt-header">
 
       <h1>Popular movies</h1>
@@ -13,6 +14,7 @@
       </movie-list>
 
     </section><!-- ./home__wrapper -->
+
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
   name: 'home',
   components: {
     'the-spinner': () => import('@/components/theSpinner.vue'),
-    'movie-list': () => import('@/components/movieList.vue')
+    'movie-list': () => import('@/components/movieLists.vue')
   },
   data () {
     return {

@@ -10,6 +10,7 @@
       <the-spinner :isLoading="isLoading"></the-spinner>
 
       <section v-if="movieDetailsList" class="movies__details__wrapper__item">
+
         <div class="movie__details__card">
 
           <div class="movie__details__card__headline">
@@ -29,7 +30,7 @@
             </div>
             <!-- Overview -->
             <p class="movie__details__card__overview">{{movieDetailsList.overview}}</p>
-          </div>
+          </div><!-- ./movie__details__card__headline -->
 
           <!-- Movie image -->
           <div class="movie__details__card__image">
@@ -37,8 +38,8 @@
               :src="`${tmdbFullImageUrl}/${movieDetailsList.poster_path}`"
               :src-placeholder="`${tmdbFullImageUrl}/${movieDetailsList.backdrop_path}`"
             />
-          </div>
-        </div>
+          </div><!-- ./movie__details__card__image -->
+        </div><!-- ./movie__details__card -->
 
         <!-- Movie trailer section -->
         <section v-if="movieDetailsList.videos.results.length">
@@ -68,14 +69,16 @@
                 </iframe>
               </div>
             </div>
-          </section>
+          </section><!-- ./movie__details__trailers -->
         </section>
         <section v-else class="movies__details__trailer--disabled">
           Sorry there are no videos for selected movie...
         </section>
-      </section>
 
-    </div>
+      </section><!-- ./movies__details__wrapper__item -->
+
+    </div><!-- ./movies__details__wrapper -->
+
   </section>
 </template>
 

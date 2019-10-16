@@ -146,7 +146,7 @@ import { formatDate } from '@/mixins/formatDate'
 import { TMDB_IMG_API_URL } from '@/config/api.constants'
 
 export default {
-  name: 'movieList',
+  name: 'movieLists',
   props: {
     isLoading: {
       type: Boolean,
@@ -264,7 +264,7 @@ export default {
         // Push IDs into array to represent favorite movies
         this.$store.dispatch('home/MARK_AS_FAVORITE', favMovieId)
 
-        this.$toasted.show('Added', {
+        this.$toasted.show('Marked', {
           type: 'info',
           icon: 'check'
         })
