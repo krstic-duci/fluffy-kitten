@@ -24,6 +24,10 @@
   display: none !important;
 }
 
+.material-icons--fav {
+  color: $redFav;
+}
+
 // Router view transition between pages
 .fade-in-enter-active, .fade-in-leave-active {
   transition: opacity .5s

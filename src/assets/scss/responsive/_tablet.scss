@@ -1,3 +1,14 @@
+@media screen and (max-width: 1024px) {
+  .sidebar__wrapper {
+    width: 100%;
+  }
+  .movies__details__wrapper__item {
+    .movie__details__trailers {
+      justify-content: space-evenly;
+    }
+  }
+}
+
 @media screen and (max-width: 992px) {
   .movies__cards {
     .movies__cards__item {
@@ -5,11 +16,15 @@
       max-width: 100%;
     }
   }
-
-  .video__player--modal {
-    &.video__player--modal-show {
-      iframe {
-
+  .movies__details__wrapper__item {
+    .movie__details__trailers {
+      display: block;
+      text-align: center;
+      & > div {
+        width: 100%;
+        &:last-child {
+          margin-left: 0;
+        }
       }
     }
   }

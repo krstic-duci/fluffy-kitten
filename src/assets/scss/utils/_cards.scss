@@ -1,101 +1,180 @@
-  .movies__cards {
+.movies__cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  .movies__cards__item {
     display: flex;
-    flex-flow: row wrap;
+    flex: 0 0 48%;
     justify-content: space-between;
+    margin-bottom: 20px;
+    max-width: 48%;
+    padding: 0 10px 45px 0;
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+    will-change: transform;
 
-    .movies__cards__item {
-      display: flex;
-      flex: 0 0 48%;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      max-width: 48%;
-      padding: 0 10px 45px 0;
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 10px 2px rgba($black, 0.3);
+    }
+
+    .movies__cards__item__rating {
+      background-color: rgba($navy-blue, 0.7);
+      border-radius: 0 4px 4px 4px;
+      color: $white;
+      left: 0;
+      padding: 5px;
+      position: absolute;
+      top: 0;
+    }
+
+    .movies__cards__item__placeholder {
+      align-self: flex-start;
+      height: 100%;
+      margin-left: 20px;
       position: relative;
-      transform: translateY(0);
-      transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
-      will-change: transform;
 
-      &:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 10px 2px rgba($black, 0.3);
+      .movies__cards__item__title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 0;
       }
 
-      .movies__cards__item__rating {
-        background-color: rgba($navy-blue, 0.7);
-        border-radius: 0 4px 4px 4px;
-        color: $white;
-        left: 0;
-        padding: 5px;
-        position: absolute;
-        top: 0;
+      .movies__cards__item__date {
+        margin-top: 5px;
+        margin-bottom: 30px;
+        color: rgba($black, 0.3)
       }
 
-      .movies__cards__item__placeholder {
-        align-self: flex-start;
-        height: 100%;
-        margin-left: 20px;
-        position: relative;
-
-        .movies__cards__item__title {
-          font-size: 18px;
-          font-weight: bold;
-          margin-bottom: 0;
-        }
-
-        .movies__cards__item__date {
-          margin-top: 5px;
-          margin-bottom: 30px;
-          color: rgba($black, 0.3)
-        }
-
-        .movies__cards__item__overview {
-          font-size: 13px;
-          line-height: 18px;
-        }
+      .movies__cards__item__overview {
+        font-size: 13px;
+        line-height: 18px;
       }
+    }
 
-      .movies__cards__item__functionality {
-        border-top: 1px solid rgba($black, 0.2);
-        bottom: 0;
-        height: 40px;
-        position: absolute;
-        width: 100%;
+    .movies__cards__item__functionality {
+      border-top: 1px solid rgba($black, 0.2);
+      bottom: 0;
+      height: 40px;
+      position: absolute;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      span {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        cursor: pointer;
+        transition: color .3s ease-in-out;
+        &:hover:not(:first-child) {
+          color: rgba($navy-blue, 0.7);
+        }
 
-        span {
-          display: flex;
-          align-items: center;
-          cursor: pointer;
+        &:first-child {
+          &:hover {
+            color: $redFav;
+          }
+        }
+
+        & > a {
           transition: color .3s ease-in-out;
-          &:hover:not(:first-child) {
+          &:hover {
             color: rgba($navy-blue, 0.7);
           }
+        }
 
-          &:first-child {
-            &:hover {
-              color: $redFav;
-            }
+        &.movies__cards__item__functionality__remove {
+          &:hover {
+            color: $red;
           }
+        }
 
-          & > a {
-            transition: color .3s ease-in-out;
-            &:hover {
-              color: rgba($navy-blue, 0.7);
-            }
-          }
-
-          &.movies__cards__item__functionality__remove {
-            &:hover {
-              color: $red;
-            }
-          }
-
-          i {
-            margin-left: 10px;
-          }
+        i {
+          margin-left: 10px;
         }
       }
     }
   }
+}
+
+.movies__details__wrapper__item {
+  .movie__details__card {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    background-color: $dirty-white;
+    padding: 15px;
+    border-radius: 5px;
+
+    .movie__details__card--bg {
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .movie__details__card__headline {
+      .movie__details__card__homepage {
+        a {
+          color: $navy-blue;
+          transition: color .3s ease-in-out;
+          &:hover {
+            color: rgba($navy-blue, 0.7);
+          }
+        }
+      }
+
+      .movie__details__card__genre {
+        padding: 10px;
+        font-size: 14px;
+        background-color: rgba($navy-blue, 0.7);
+        border-radius: 5px;
+        color: $white;
+        &:not(:first-child) {
+          margin-left: 5px;
+        }
+      }
+
+      .movie__details__card__overview {
+        margin-top: 25px;
+        font-size: 15px;
+        line-height: 18px;
+      }
+    }
+
+    .movie__details__card__image {
+      img {
+        height: 350px;
+      }
+    }
+  }
+
+  .movie__details__trailers {
+    display: flex;
+
+    & > div {
+      &:last-child {
+        margin-left: 50px;
+      }
+    }
+
+    iframe {
+      width: 400px;
+      height: 300px;
+    }
+  }
+
+  .movies__details__trailer--disabled {
+    margin-top: 40px;
+  }
+}

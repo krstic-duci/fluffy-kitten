@@ -90,6 +90,14 @@ export default {
       listIdsWatchLater: 'home/SELECTED_MOVIE_GETTER'
     })
   },
+  watch: {
+    $route (to, from) {
+      if (to.params.id !== from.params.id) {
+        this.movieQuery = ''
+        this.movies = []
+      }
+    }
+  },
   methods: {
     searchMovieById (movieId) {
       // Don't bother the server when movieId is undefined/null,

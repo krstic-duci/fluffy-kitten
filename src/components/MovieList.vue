@@ -58,7 +58,10 @@
           </i>
           <i
             class="small material-icons"
-            :class="{'d-none': !listIdsFavorite.includes(movie.id)}"
+            :class="{
+              'd-none': !listIdsFavorite.includes(movie.id),
+              'material-icons--fav': listIdsFavorite.includes(movie.id)
+            }"
           >
             favorite
           </i>

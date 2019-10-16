@@ -1,22 +1,43 @@
 @media screen and (max-width: 767px) {
-  .home__wrapper {
-    h1 {
-      margin: 10px 0;
-    }
-  }
-  .pt-header {
-    padding-top: 110px;
-  }
-
   .sidebar__wrapper {
     flex-flow: column wrap;
     width: 100%;
     nav, .search__movies__wrapper {
       flex: unset;
     }
+    nav {
+      .sidebar__wrapper__links {
+        .sidebar__item {
+          padding: 5px 10px;
+
+          .sidebar__item__notification {
+            & > span {
+              bottom: 12px
+            }
+          }
+        }
+      }
+    }
+
     .search__movies__wrapper {
       width: 90%;
+      & > input {
+        height: 30px;
+      }
+      .search__movies__wrapper__list {
+        top: 40px;
+      }
     }
+  }
+
+  .home__wrapper, .watch__later__wrapper {
+    h1 {
+      margin: 5px 0 10px;
+    }
+  }
+
+  .pt-header {
+    padding-top: 87px;
   }
 
   .movies__cards {
@@ -64,6 +85,19 @@
       }
     }
   }
+
+    .movies__details__wrapper__item {
+      .movie__details__card {
+        .movie__details__card__headline {
+          .movie__details__card__genre {
+            display: block;
+            margin-left: 0 !important;
+            margin-top: 5px;
+            width: 60%;
+          }
+        }
+      }
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -86,6 +120,24 @@
         iframe {
           width: inherit;
           height: 370px;
+        }
+      }
+    }
+  }
+  .movies__details__wrapper__item {
+    .movie__details__card {
+      display: block;
+      width: 100%;
+    }
+
+    .movie__details__trailers {
+      margin-bottom: 20px;
+      div {
+        margin-left: 0 !important;
+        width: 100%;
+
+        iframe {
+          width: inherit;
         }
       }
     }
