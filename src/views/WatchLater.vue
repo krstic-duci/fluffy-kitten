@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <section class="container">
 
-    <section class="watch__later__wrapper pt-header">
+    <div class="watch__later__wrapper pt-header">
 
       <h1>List of added movies:</h1>
 
@@ -14,9 +14,9 @@
 
       <movie-list :movies="watchLaterListMovies"></movie-list>
 
-    </section><!-- ./watch__later__wrapper -->
+    </div><!-- ./watch__later__wrapper -->
 
-  </div>
+  </section>
 </template>
 
 <script>

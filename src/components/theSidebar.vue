@@ -47,7 +47,7 @@
             :key="movie.id"
           >
             <router-link :to="{ name: 'MovieDetails', params: { id: movie.id }}">
-              <!-- Set image from TMDB if exists, TMDB returns 404 -->
+              <!-- Set image from TMDB if exists (TMDB returns 404) -->
               <v-lazy-image
                 v-if="movie.poster_path"
                 :src="`${movieImagePathUrl}${movie.poster_path}`"
@@ -92,6 +92,7 @@ export default {
   },
   watch: {
     $route (to, from) {
+      // On every route change reset the search field
       if (to.params.id !== from.params.id) {
         this.movieQuery = ''
         this.movies = []

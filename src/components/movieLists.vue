@@ -1,5 +1,5 @@
 <template>
-  <div class="movies__cards" v-show="!isLoading">
+  <section class="movies__cards" v-show="!isLoading">
     <div
       v-for="movie in movies"
       :key="movie.id"
@@ -105,7 +105,10 @@
         </span>
 
         <!-- Play Trailer -->
-        <span @click="playTrailer(movie.id)" :class="{'d-none': $route.name === 'Home'}">
+        <span
+          @click="playTrailer(movie.id)"
+          :class="{'d-none': $route.name === 'Home'}"
+        >
           Play trailer:
           <i class="small material-icons">play_arrow</i>
         </span>
@@ -136,7 +139,7 @@
       </section><!--./video__player--modal -->
     </div><!--./video__player--backdrop -->
 
-  </div><!-- ./movies__cards -->
+  </section><!-- ./movies__cards -->
 </template>
 
 <script>

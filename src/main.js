@@ -2,12 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './routes/router'
 import store from './store/store'
+import ApiService from '@/config/api.config'
 import { VLazyImagePlugin } from 'v-lazy-image'
 import Toasted from 'vue-toasted'
-import ApiService from '@/config/api.config'
 
 Vue.config.productionTip = false
+
 ApiService.init()
+
 // Initialize Vue Plugins:
 Vue.use(VLazyImagePlugin)
 Vue.use(Toasted, {

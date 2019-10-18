@@ -71,6 +71,7 @@
             </div>
           </section><!-- ./movie__details__trailers -->
         </section>
+
         <section v-else class="movies__details__trailer--disabled">
           Sorry there are no videos for selected movie...
         </section>

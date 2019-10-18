@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <section class="container">
 
-    <section class="home__wrapper pt-header">
+    <div class="home__wrapper pt-header">
 
       <h1>Popular movies</h1>
 
@@ -13,9 +13,9 @@
       >
       </movie-list>
 
-    </section><!-- ./home__wrapper -->
+    </div><!-- ./home__wrapper -->
 
-  </div>
+  </section>
 </template>
 
 <script>
