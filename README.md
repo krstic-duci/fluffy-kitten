@@ -1,5 +1,3 @@
-# leovegas
-
 ## Project setup
 ```
 npm install
